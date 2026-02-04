@@ -13,13 +13,13 @@ public protocol APIEndpoint {
     var method: HTTPMethod { get }
 
     var headers: [String: String]? { get }
-    var queryItems: [String: String]? { get }
+    var queryItems: [URLQueryItem]? { get }
     var body: Data? { get }
 }
 
 // TODO: - Clarify, in terms of generic usage, whether these default implementations are appropriate.
 public extension APIEndpoint {
     var headers: [String: String]? { nil }
-    var queryItems: [String: String]? { nil }
+    var queryItems: [URLQueryItem]? { nil }
     var body: Data? { nil }
 }
