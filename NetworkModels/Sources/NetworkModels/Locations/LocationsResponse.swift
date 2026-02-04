@@ -5,7 +5,7 @@
 //  Created by BURAKHAN OZAY on 4.02.2026.
 //
 
-public struct locationsResponse: Decodable {
+public struct LocationsResponse: Decodable {
     let locations: [Location]?
 
     public init(locations: [Location]?) {
