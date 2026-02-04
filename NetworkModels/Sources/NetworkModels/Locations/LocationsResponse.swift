@@ -6,7 +6,7 @@
 //
 
 public struct LocationsResponse: Decodable {
-    let locations: [Location]?
+    public let locations: [Location]?
 
     public init(locations: [Location]?) {
         self.locations = locations
