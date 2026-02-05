@@ -12,7 +12,7 @@ import NetworkModels
 @MainActor
 final class LocationsVM: ObservableObject {
 
-    @Published private(set) var state: State = .unknown
+    @Published private(set) var state: ViewState = .unknown
     @Published private(set) var locations: [Location] = []
 
     private let service: LocationsServicing
@@ -38,7 +38,7 @@ final class LocationsVM: ObservableObject {
 }
 
 // TODO: Move to another file
-enum State {
+enum ViewState {
     case unknown
     case loading
     case empty
