@@ -7,8 +7,4 @@
 
 public struct LocationsResponse: Decodable, Sendable {
     public let locations: [Location]?
-
-    public init(locations: [Location]?) {
-        self.locations = locations
-    }
 }
