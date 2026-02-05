@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  LocationsView.swift
 //  Places
 //
 //  Created by BURAKHAN OZAY on 4.02.2026.
