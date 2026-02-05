@@ -10,9 +10,11 @@ import NetworkModels
 
 struct LocationRowView: View {
 
+    // MARK: - Dependencies
     let model: Model
     let onButtonTap: () -> Void
 
+    // MARK: - Body
     var body: some View {
         HStack(alignment: .top, spacing: Constant.hStackSpacing) {
             VStack(alignment: .leading, spacing: Constant.vStackSpacing) {
@@ -43,6 +45,7 @@ struct LocationRowView: View {
     }
 }
 
+//MARK: - Model
 extension LocationRowView {
     struct Model {
         private let location: Location
@@ -57,6 +60,7 @@ extension LocationRowView {
     }
 }
 
+// MARK: - Constant
 private extension LocationRowView {
     enum Constant {
         static let hStackSpacing: CGFloat = 12
