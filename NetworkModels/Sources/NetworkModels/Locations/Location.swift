@@ -5,7 +5,7 @@
 //  Created by BURAKHAN OZAY on 4.02.2026.
 //
 
-public struct Location: Decodable {
+public struct Location: Decodable, Sendable {
     public let name: String?
     public let latitude: Double?
     public let longitude: Double?
