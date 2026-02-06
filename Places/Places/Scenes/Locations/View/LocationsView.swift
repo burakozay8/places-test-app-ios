@@ -12,6 +12,7 @@ struct LocationsView: View {
 
     // MARK: - Properties
     @StateObject private var viewModel = LocationsVM()
+    @State private var isAddLocationPresented = false
 
     //MARK: - Body
     var body: some View {
@@ -20,6 +21,10 @@ struct LocationsView: View {
                 .navigationTitle(Constant.navigationTitle)
                 .safeAreaInset(edge: .bottom) {
                     addLocationButton
+                }
+                .sheet(isPresented: $isAddLocationPresented) {
+                    AddLocationSheetView()
+                        .presentationDragIndicator(.visible)
                 }
         }
         .task {
@@ -30,7 +35,6 @@ struct LocationsView: View {
 
 // MARK: - Content
 private extension LocationsView {
-
     @ViewBuilder
     var content: some View {
         switch viewModel.state {
@@ -82,7 +86,7 @@ private extension LocationsView {
 private extension LocationsView {
     var addLocationButton: some View {
         Button {
-//            isAddLocationPresented = true
+            isAddLocationPresented = true
         } label: {
             Text(Constant.addLocationsButtonTitle)
                 .font(.headline)
