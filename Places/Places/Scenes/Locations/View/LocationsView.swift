@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NetworkModels
 
 struct LocationsView: View {
 
@@ -62,8 +63,12 @@ private extension LocationsView {
                     LocationRowView(
                         model: .init(location: location),
                         onButtonTap: {
-                            // TODO: - Navigate deeplink.
-                            print("Explore wiki")
+                            if let url = viewModel.createWikipediaPlacesDeeplinkUrl(
+                                latitude: location.latitude,
+                                longitude: location.longitude
+                            ) {
+                                UIApplication.shared.open(url)
+                            }
                         }
                     )
                 }
@@ -77,7 +82,7 @@ private extension LocationsView {
 private extension LocationsView {
     var addLocationButton: some View {
         Button {
-            isAddLocationPresented = true
+//            isAddLocationPresented = true
         } label: {
             Text(Constant.addLocationsButtonTitle)
                 .font(.headline)

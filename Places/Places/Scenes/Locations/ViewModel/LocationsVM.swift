@@ -35,6 +35,27 @@ final class LocationsVM: ObservableObject {
             state = .error
         }
     }
+
+    func createWikipediaPlacesDeeplinkUrl(latitude: Double?, longitude: Double?) -> URL? {
+        guard let latitude, let longitude else { return nil }
+
+        var components = URLComponents()
+        components.scheme = Constant.wikipediaAppDeeplinkScheme
+        components.host = Constant.wikipediaAppDeeplinkHost
+        components.queryItems = [
+            URLQueryItem(name: "lat", value: String(latitude)),
+            URLQueryItem(name: "lon", value: String(longitude))
+        ]
+
+        return components.url
+    }
+}
+
+private extension LocationsVM {
+    enum Constant {
+        static let wikipediaAppDeeplinkScheme = "wikipedia"
+        static let wikipediaAppDeeplinkHost = "places"
+    }
 }
 
 // TODO: Move to another file
