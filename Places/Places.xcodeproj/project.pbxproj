@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C79B7ECB2F377EBC0094AC7C /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = C79B7ECA2F377EBC0094AC7C /* Storage */; };
 		C7ACD5232F33A56800164A18 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = C7ACD5222F33A56800164A18 /* Networking */; };
 		C7ACD5262F33A57700164A18 /* NetworkModels in Frameworks */ = {isa = PBXBuildFile; productRef = C7ACD5252F33A57700164A18 /* NetworkModels */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79B7ECB2F377EBC0094AC7C /* Storage in Frameworks */,
 				C7ACD5232F33A56800164A18 /* Networking in Frameworks */,
 				C7ACD5262F33A57700164A18 /* NetworkModels in Frameworks */,
 			);
@@ -121,6 +123,7 @@
 			packageProductDependencies = (
 				C7ACD5222F33A56800164A18 /* Networking */,
 				C7ACD5252F33A57700164A18 /* NetworkModels */,
+				C79B7ECA2F377EBC0094AC7C /* Storage */,
 			);
 			productName = Places;
 			productReference = C74EB59D2F338D5D00491F94 /* Places.app */;
@@ -207,6 +210,7 @@
 			packageReferences = (
 				C7ACD5212F33A56800164A18 /* XCLocalSwiftPackageReference "../Networking" */,
 				C7ACD5242F33A57700164A18 /* XCLocalSwiftPackageReference "../NetworkModels" */,
+				C79B7EC92F377EBC0094AC7C /* XCLocalSwiftPackageReference "../Storage" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C74EB59E2F338D5D00491F94 /* Products */;
@@ -585,6 +589,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		C79B7EC92F377EBC0094AC7C /* XCLocalSwiftPackageReference "../Storage" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Storage;
+		};
 		C7ACD5212F33A56800164A18 /* XCLocalSwiftPackageReference "../Networking" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../Networking;
@@ -596,6 +604,10 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C79B7ECA2F377EBC0094AC7C /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Storage;
+		};
 		C7ACD5222F33A56800164A18 /* Networking */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Networking;
