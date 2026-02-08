@@ -16,24 +16,34 @@ final class LocationsVM: ObservableObject {
     @Published private(set) var locations: [Location] = []
 
     private let service: LocationsServicing
+    private let store: LocationsStoring
 
-    init(service: LocationsServicing) {
+    init(service: LocationsServicing, store: LocationsStoring) {
         self.service = service
+        self.store = store
     }
 
     convenience init() {
-        self.init(service: LocationsService())
+        self.init(service: LocationsService(), store: LocationsStorage())
     }
 
     func fetchLocations() async {
         state = .loading
         do {
             let response = try await service.fetchLocations()
-            locations = response.locations ?? []
+            let remoteLocations = response.locations ?? []
+            let storedLocations = store.loadStoredLocations()
+            locations = remoteLocations + storedLocations
             state = locations.isEmpty ? .empty : .success
         } catch {
             state = .error
         }
+    }
+
+    func addLocation(_ location: Location) {
+        store.save(location)
+        locations.append(location)
+        state = .success
     }
 
     func createWikipediaPlacesDeeplinkUrl(latitude: Double?, longitude: Double?) -> URL? {
