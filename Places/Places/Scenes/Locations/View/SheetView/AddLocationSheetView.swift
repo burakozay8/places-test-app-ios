@@ -6,54 +6,74 @@
 //
 
 import SwiftUI
-import Combine
+import NetworkModels
 
 struct AddLocationSheetView: View {
 
     // MARK: - Properties
     @Environment(\.dismiss) private var dismiss
+    @FocusState private var focus: AddLocationSheetVM.AddLocationField?
+    @StateObject private var viewModel = AddLocationSheetVM()
 
-    @FocusState private var focus: Field?
-
-    @State private var name = ""
-    @State private var latitude = ""
-    @State private var longitude = ""
-
-    // MARK: - Field Enum
-    enum Field { case name, lat, lon }
+    let onSave: (Location) -> Void
 
     // MARK: - Body
     var body: some View {
         NavigationStack {
-            Form {
-                Section {
-                    TextField(Constant.nameTextFieldPlaceHolderText, text: $name)
-                        .textInputAutocapitalization(.words)
-                        .autocorrectionDisabled()
-                        .focused($focus, equals: .name)
-                    TextField(Constant.latitudeTextFieldPlaceHolderText, text: $latitude)
-                        .keyboardType(.decimalPad)
-                        .focused($focus, equals: .lat)
-                        .onChange(of: latitude) {
-                            latitude = latitude.replacingOccurrences(of: ",", with: ".")
-                        }
-                    TextField(Constant.longitudeTextFieldPlaceHolderText, text: $longitude)
-                        .keyboardType(.decimalPad)
-                        .focused($focus, equals: .lon)
-                        .onChange(of: longitude) {
-                            longitude = longitude.replacingOccurrences(of: ",", with: ".")
-                        }
+            VStack(spacing: 16) {
+                ValidatableTextField(
+                    model: .init(
+                        title: Constant.nameTextFieldPlaceHolderText,
+                        text: $viewModel.name,
+                        focus: $focus
+                    )
+                )
+                .textInputAutocapitalization(.words)
+                .autocorrectionDisabled()
+
+                ValidatableTextField(
+                    model: .init(
+                        title: Constant.latitudeTextFieldPlaceHolderText,
+                        text: $viewModel.latitude,
+                        focus: $focus,
+                        keyboard: .numbersAndPunctuation,
+                        error: viewModel.shouldShowError(for: .latitude) ? viewModel.latitudeError : nil,
+                        focusField: .latitude
+                    )
+                )
+                .onChange(of: viewModel.latitude) {
+                    viewModel.latitude = viewModel.latitude.replacingOccurrences(of: ",", with: ".")
                 }
+
+                ValidatableTextField(
+                    model: .init(
+                        title: Constant.longitudeTextFieldPlaceHolderText,
+                        text: $viewModel.longitude,
+                        focus: $focus,
+                        keyboard: .numbersAndPunctuation,
+                        error: viewModel.shouldShowError(for: .longitude) ? viewModel.longitudeError : nil,
+                        focusField: .longitude
+                    )
+                )
+                .onChange(of: viewModel.longitude) {
+                    viewModel.longitude = viewModel.longitude.replacingOccurrences(of: ",", with: ".")
+                }
+
+                Spacer()
             }
+            .padding(.horizontal, 16)
+            .padding(.top, 16)
             .navigationTitle(Constant.navigationBarTitle)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(Constant.saveButtonTitle) {
+                        guard let location = viewModel.makeLocation() else { return }
+                        onSave(location)
                         dismiss()
                     }
                     .buttonStyle(.borderedProminent)
-                    .disabled(!isInputValid)
+                    .disabled(!viewModel.isInputValid)
                 }
 
                 ToolbarItemGroup(placement: .keyboard) {
@@ -63,11 +83,19 @@ struct AddLocationSheetView: View {
                     }
                 }
             }
-            .onAppear { focus = .name }
+            .onChange(of: focus) { oldValue, newValue in
+                if let oldValue, newValue != oldValue {
+                    viewModel.markTouched(oldValue)
+                }
+                if newValue == nil, let oldValue {
+                    viewModel.markTouched(oldValue)
+                }
+            }
         }
     }
 }
 
+// MARK: - Constant
 private extension AddLocationSheetView {
     enum Constant {
         static let nameTextFieldPlaceHolderText = "Name (optional)"
@@ -76,12 +104,5 @@ private extension AddLocationSheetView {
         static let navigationBarTitle = "Add Location"
         static let saveButtonTitle = "Save"
         static let doneButtonTitle = "Done"
-    }
-}
-
-// MARK: - Validation
-private extension AddLocationSheetView {
-    var isInputValid: Bool {
-        Double(latitude) != nil && Double(longitude) != nil
     }
 }
