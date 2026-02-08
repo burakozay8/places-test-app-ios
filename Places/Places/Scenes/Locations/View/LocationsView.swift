@@ -23,8 +23,11 @@ struct LocationsView: View {
                     addLocationButton
                 }
                 .sheet(isPresented: $isAddLocationPresented) {
-                    AddLocationSheetView()
-                        .presentationDragIndicator(.visible)
+                    AddLocationSheetView { location in
+                        viewModel.addLocation(location)
+                    }
+                    .presentationDetents([.medium])
+                    .presentationDragIndicator(.visible)
                 }
         }
         .task {
