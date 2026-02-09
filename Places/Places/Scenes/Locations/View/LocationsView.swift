@@ -85,7 +85,10 @@ private extension LocationsView {
                                 latitude: location.latitude,
                                 longitude: location.longitude
                             ) {
-                                UIApplication.shared.open(url)
+                                UIApplication.openURL(url, failure: {
+                                    guard let url = URL(string: Constant.wikipediaAppStoreUrlString) else { return }
+                                    UIApplication.openURL(url)
+                                })
                             }
                         }
                     )
@@ -124,5 +127,6 @@ private extension LocationsView {
         static let locationsListVStackViewSpacing: CGFloat = 12
         static let addLocationsButtonTitle = "Add Location"
         static let addLocationsButtonHeight: CGFloat = 48
+        static let wikipediaAppStoreUrlString = "https://apps.apple.com/app/wikipedia/id324715238"
     }
 }
