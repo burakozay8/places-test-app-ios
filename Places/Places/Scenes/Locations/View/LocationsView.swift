@@ -76,7 +76,7 @@ private extension LocationsView {
 private extension LocationsView {
     var locationsList: some View {
         ScrollView {
-            LazyVStack(spacing: Constant.locationsListVStackViewSpacing) {
+            LazyVStack(spacing: 12) {
                 ForEach(viewModel.locations) { location in
                     LocationRowView(
                         model: .init(location: location),
@@ -110,7 +110,7 @@ private extension LocationsView {
                 .frame(maxWidth: .infinity)
                 .padding()
         }
-        .frame(height: Constant.addLocationsButtonHeight)
+        .frame(height: 48)
         .buttonStyle(.borderedProminent)
         .padding()
         .accessibilityLabel(AccessibilityLabel.addLocation.rawValue)
@@ -125,9 +125,7 @@ private extension LocationsView {
         static let loadingTitle = "Loading..."
         static let emptyLabelTitle = "No locations found!"
         static let errorLabelTitle = "Something went wrong 😕"
-        static let locationsListVStackViewSpacing: CGFloat = 12
         static let addLocationsButtonTitle = "Add Location"
-        static let addLocationsButtonHeight: CGFloat = 48
         static let wikipediaAppStoreUrlString = "https://apps.apple.com/app/wikipedia/id324715238"
     }
 }

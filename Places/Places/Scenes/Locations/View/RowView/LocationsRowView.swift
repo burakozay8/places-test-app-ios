@@ -16,8 +16,8 @@ struct LocationRowView: View {
 
     // MARK: - Body
     var body: some View {
-        HStack(alignment: .top, spacing: Constant.hStackSpacing) {
-            VStack(alignment: .leading, spacing: Constant.vStackSpacing) {
+        HStack(alignment: .top, spacing: 12) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(model.title)
                     .font(.headline)
                     .accessibilityLabel(model.title)
@@ -45,7 +45,7 @@ struct LocationRowView: View {
         }
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: Constant.cornerRadius)
+            RoundedRectangle(cornerRadius: 12)
                 .fill(Color(.secondarySystemBackground))
         )
         .accessibilityElement(children: .contain)
@@ -87,9 +87,6 @@ extension LocationRowView {
 // MARK: - Constant
 private extension LocationRowView {
     enum Constant {
-        static let hStackSpacing: CGFloat = 12
-        static let vStackSpacing: CGFloat = 4
-        static let cornerRadius: CGFloat = 12
         static let emptyTitle = "Unnamed Location"
         static let buttonName = "Explore on Wikipedia"
         static let unknownNameForButton = "this location"
