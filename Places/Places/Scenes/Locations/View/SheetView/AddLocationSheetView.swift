@@ -25,7 +25,9 @@ struct AddLocationSheetView: View {
                     model: .init(
                         title: Constant.nameTextFieldPlaceHolderText,
                         text: $viewModel.name,
-                        focus: $focus
+                        focus: $focus,
+                        accessibilityLabel: AccessibilityLabel.nameField.rawValue,
+                        accessibilityHint: .nameField
                     )
                 )
                 .textInputAutocapitalization(.words)
@@ -38,7 +40,9 @@ struct AddLocationSheetView: View {
                         focus: $focus,
                         keyboard: .numbersAndPunctuation,
                         error: viewModel.shouldShowError(for: .latitude) ? viewModel.latitudeError : nil,
-                        focusField: .latitude
+                        focusField: .latitude,
+                        accessibilityLabel: Constant.latitudeTextFieldPlaceHolderText,
+                        accessibilityHint: .latitudeField,
                     )
                 )
                 .onChange(of: viewModel.latitude) {
@@ -52,7 +56,9 @@ struct AddLocationSheetView: View {
                         focus: $focus,
                         keyboard: .numbersAndPunctuation,
                         error: viewModel.shouldShowError(for: .longitude) ? viewModel.longitudeError : nil,
-                        focusField: .longitude
+                        focusField: .longitude,
+                        accessibilityLabel: Constant.longitudeTextFieldPlaceHolderText,
+                        accessibilityHint: .longitudeField,
                     )
                 )
                 .onChange(of: viewModel.longitude) {
@@ -74,6 +80,10 @@ struct AddLocationSheetView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .disabled(!viewModel.isInputValid)
+                    .accessibilityLabel(Constant.saveButtonTitle)
+                    .accessibilityHint(
+                        viewModel.isInputValid ? AccessibilityHint.saveEnabled.rawValue : AccessibilityHint.saveDisabled.rawValue
+                    )
                 }
 
                 ToolbarItemGroup(placement: .keyboard) {
@@ -81,6 +91,8 @@ struct AddLocationSheetView: View {
                     Button(Constant.doneButtonTitle) {
                         focus = nil
                     }
+                    .accessibilityLabel(Constant.doneButtonTitle)
+                    .accessibilityHint(AccessibilityHint.doneButton.rawValue)
                 }
             }
             .onChange(of: focus) { oldValue, newValue in
