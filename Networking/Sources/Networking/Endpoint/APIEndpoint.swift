@@ -17,8 +17,8 @@ public protocol APIEndpoint {
     var body: Data? { get }
 }
 
-// TODO: - Clarify, in terms of generic usage, whether these default implementations are appropriate.
 public extension APIEndpoint {
+    var baseURL: String { "https://raw.githubusercontent.com" }
     var headers: [String: String]? { nil }
     var queryItems: [URLQueryItem]? { nil }
     var body: Data? { nil }

@@ -12,21 +12,25 @@ import NetworkModels
 @MainActor
 final class LocationsVM: ObservableObject {
 
+    // MARK: - Properties
     @Published private(set) var state: ViewState = .unknown
     @Published private(set) var locations: [Location] = []
 
     private let service: LocationsServicing
     private let store: LocationsStoring
 
+    // MARK: - Init
     init(service: LocationsServicing, store: LocationsStoring) {
         self.service = service
         self.store = store
     }
 
+    // MARK: - Convenience Init
     convenience init() {
         self.init(service: LocationsService(), store: LocationsStorage())
     }
 
+    // MARK: - Functions
     func fetchLocations() async {
         state = .loading
         do {
@@ -61,18 +65,10 @@ final class LocationsVM: ObservableObject {
     }
 }
 
+// MARK: - Constant
 private extension LocationsVM {
     enum Constant {
         static let wikipediaAppDeeplinkScheme = "wikipedia"
         static let wikipediaAppDeeplinkHost = "places"
     }
-}
-
-// TODO: Move to another file
-enum ViewState {
-    case unknown
-    case loading
-    case empty
-    case success
-    case error
 }

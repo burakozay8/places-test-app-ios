@@ -9,8 +9,10 @@ import SwiftUI
 
 struct CenterStateView: View {
 
+    // MARK: - Dependencies
     let model: Model
 
+    // MARK: - Body
     var body: some View {
         Text(model.title)
             .font(.title2)
@@ -23,6 +25,7 @@ struct CenterStateView: View {
     }
 }
 
+// MARK: - Model
 extension CenterStateView {
     struct Model {
         let title: String

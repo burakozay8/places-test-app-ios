@@ -9,8 +9,10 @@ import SwiftUI
 
 struct ValidatableTextField: View {
 
+    // MARK: - Dependencies
     let model: Model
 
+    // MARK: - Body
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             TextField(model.title, text: model.text)
@@ -38,6 +40,7 @@ struct ValidatableTextField: View {
     }
 }
 
+// MARK: - Model
 extension ValidatableTextField {
     struct Model {
         let title: String

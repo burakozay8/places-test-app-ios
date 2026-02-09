@@ -65,9 +65,6 @@ extension LocationRowView {
         var latitudeText: String { "\(Constant.latitudePrefix): \(location.latitude ?? 0.0)" }
         var longitudeText: String { "\(Constant.longitudePrefix): \(location.longitude ?? 0.0)" }
 
-
-        // MARK: - Accessibility
-
         var accessibilityLatitude: String {
             "\(Constant.latitudePrefix) \(format(location.latitude ?? 0.0))"
         }

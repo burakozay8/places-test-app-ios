@@ -18,7 +18,6 @@ final class LocationsService: LocationsServicing {
     enum LocationsAPI: APIEndpoint {
         case locations
 
-        var baseURL: String { "https://raw.githubusercontent.com" }
         var path: String {
             switch self {
             case .locations:

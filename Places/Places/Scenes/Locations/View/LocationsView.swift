@@ -118,6 +118,7 @@ private extension LocationsView {
     }
 }
 
+// MARK: - Constant
 private extension LocationsView {
     enum Constant {
         static let navigationTitle = "Locations"

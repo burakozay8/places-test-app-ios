@@ -85,15 +85,14 @@ final class AddLocationSheetVM: ObservableObject {
     }
 }
 
+// MARK: - Constant
 private extension AddLocationSheetVM {
     enum Constant {
-        // Latitude
         static let latitudeRequiredError = "Latitude is required."
         static let latitudeNotNumberError = "Latitude must be a number."
         static let latitudeOutOfRangeError = "Latitude must be between -90 and 90."
         static let latitudeRange: ClosedRange<Double> = -90.0...90.0
 
-        // Longitude
         static let longitudeRequiredError = "Longitude is required."
         static let longitudeNotNumberError = "Longitude must be a number."
         static let longitudeOutOfRangeError = "Longitude must be between -180 and 180."
