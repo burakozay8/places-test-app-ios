@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C79B7ECB2F377EBC0094AC7C /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = C79B7ECA2F377EBC0094AC7C /* Storage */; };
+		C79B82772F3A6A180094AC7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C79B82762F3A6A180094AC7C /* LaunchScreen.storyboard */; };
 		C7ACD5232F33A56800164A18 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = C7ACD5222F33A56800164A18 /* Networking */; };
 		C7ACD5262F33A57700164A18 /* NetworkModels in Frameworks */ = {isa = PBXBuildFile; productRef = C7ACD5252F33A57700164A18 /* NetworkModels */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		C74EB59D2F338D5D00491F94 /* Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Places.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74EB5AA2F338D5F00491F94 /* PlacesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C74EB5B42F338D5F00491F94 /* PlacesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlacesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C79B82762F3A6A180094AC7C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -97,6 +99,7 @@
 		C74EB5942F338D5D00491F94 = {
 			isa = PBXGroup;
 			children = (
+				C79B82762F3A6A180094AC7C /* LaunchScreen.storyboard */,
 				C74EB59F2F338D5D00491F94 /* Places */,
 				C74EB5AD2F338D5F00491F94 /* PlacesTests */,
 				C74EB5B72F338D5F00491F94 /* PlacesUITests */,
@@ -242,6 +245,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79B82772F3A6A180094AC7C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +434,8 @@
 				INFOPLIST_FILE = Places/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -462,7 +467,8 @@
 				INFOPLIST_FILE = Places/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
