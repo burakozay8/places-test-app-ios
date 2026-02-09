@@ -28,6 +28,7 @@ struct LocationsView: View {
                     }
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
+                    .accessibilityAddTraits(.isModal)
                 }
         }
         .task {
@@ -50,6 +51,8 @@ private extension LocationsView {
             Text("No locations found!")
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibilityLabel(AccessibilityLabel.empty.rawValue)
+                .accessibilityHint(AccessibilityHint.empty.rawValue)
         case .success:
             locationsList
         case .error:
@@ -57,6 +60,8 @@ private extension LocationsView {
             Text("Something went wrong")
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .accessibilityLabel(AccessibilityLabel.error.rawValue)
+                .accessibilityHint(AccessibilityHint.addLocation.rawValue)
         }
     }
 }
@@ -99,6 +104,8 @@ private extension LocationsView {
         .frame(height: Constant.addLocationsButtonHeight)
         .buttonStyle(.borderedProminent)
         .padding()
+        .accessibilityLabel(AccessibilityLabel.addLocation.rawValue)
+        .accessibilityHint(AccessibilityHint.addLocation.rawValue)
     }
 }
 
