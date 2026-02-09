@@ -20,89 +20,92 @@ struct AddLocationSheetView: View {
     // MARK: - Body
     var body: some View {
         NavigationStack {
-            VStack(spacing: 16) {
-                ValidatableTextField(
-                    model: .init(
-                        title: Constant.nameTextFieldPlaceHolderText,
-                        text: $viewModel.name,
-                        focus: $focus,
-                        accessibilityLabel: AccessibilityLabel.nameField.rawValue,
-                        accessibilityHint: .nameField
+            ScrollView {
+                VStack(spacing: 16) {
+                    ValidatableTextField(
+                        model: .init(
+                            title: Constant.nameTextFieldPlaceHolderText,
+                            text: $viewModel.name,
+                            focus: $focus,
+                            accessibilityLabel: AccessibilityLabel.nameField.rawValue,
+                            accessibilityHint: .nameField
+                        )
                     )
-                )
-                .textInputAutocapitalization(.words)
-                .autocorrectionDisabled()
+                    .textInputAutocapitalization(.words)
+                    .autocorrectionDisabled()
 
-                ValidatableTextField(
-                    model: .init(
-                        title: Constant.latitudeTextFieldPlaceHolderText,
-                        text: $viewModel.latitude,
-                        focus: $focus,
-                        keyboard: .numbersAndPunctuation,
-                        error: viewModel.shouldShowError(for: .latitude) ? viewModel.latitudeError : nil,
-                        focusField: .latitude,
-                        accessibilityLabel: Constant.latitudeTextFieldPlaceHolderText,
-                        accessibilityHint: .latitudeField,
+                    ValidatableTextField(
+                        model: .init(
+                            title: Constant.latitudeTextFieldPlaceHolderText,
+                            text: $viewModel.latitude,
+                            focus: $focus,
+                            keyboard: .numbersAndPunctuation,
+                            error: viewModel.shouldShowError(for: .latitude) ? viewModel.latitudeError : nil,
+                            focusField: .latitude,
+                            accessibilityLabel: Constant.latitudeTextFieldPlaceHolderText,
+                            accessibilityHint: .latitudeField,
+                        )
                     )
-                )
-                .onChange(of: viewModel.latitude) {
-                    viewModel.latitude = viewModel.latitude.replacingOccurrences(of: ",", with: ".")
-                }
-
-                ValidatableTextField(
-                    model: .init(
-                        title: Constant.longitudeTextFieldPlaceHolderText,
-                        text: $viewModel.longitude,
-                        focus: $focus,
-                        keyboard: .numbersAndPunctuation,
-                        error: viewModel.shouldShowError(for: .longitude) ? viewModel.longitudeError : nil,
-                        focusField: .longitude,
-                        accessibilityLabel: Constant.longitudeTextFieldPlaceHolderText,
-                        accessibilityHint: .longitudeField,
-                    )
-                )
-                .onChange(of: viewModel.longitude) {
-                    viewModel.longitude = viewModel.longitude.replacingOccurrences(of: ",", with: ".")
-                }
-
-                Spacer()
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 16)
-            .navigationTitle(Constant.navigationBarTitle)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(Constant.saveButtonTitle) {
-                        guard let location = viewModel.makeLocation() else { return }
-                        onSave(location)
-                        dismiss()
+                    .onChange(of: viewModel.latitude) {
+                        viewModel.latitude = viewModel.latitude.replacingOccurrences(of: ",", with: ".")
                     }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(!viewModel.isInputValid)
-                    .accessibilityLabel(Constant.saveButtonTitle)
-                    .accessibilityHint(
-                        viewModel.isInputValid ? AccessibilityHint.saveEnabled.rawValue : AccessibilityHint.saveDisabled.rawValue
-                    )
-                }
 
-                ToolbarItemGroup(placement: .keyboard) {
+                    ValidatableTextField(
+                        model: .init(
+                            title: Constant.longitudeTextFieldPlaceHolderText,
+                            text: $viewModel.longitude,
+                            focus: $focus,
+                            keyboard: .numbersAndPunctuation,
+                            error: viewModel.shouldShowError(for: .longitude) ? viewModel.longitudeError : nil,
+                            focusField: .longitude,
+                            accessibilityLabel: Constant.longitudeTextFieldPlaceHolderText,
+                            accessibilityHint: .longitudeField,
+                        )
+                    )
+                    .onChange(of: viewModel.longitude) {
+                        viewModel.longitude = viewModel.longitude.replacingOccurrences(of: ",", with: ".")
+                    }
+
                     Spacer()
-                    Button(Constant.doneButtonTitle) {
-                        focus = nil
+                }
+                .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .navigationTitle(Constant.navigationBarTitle)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button(Constant.saveButtonTitle) {
+                            guard let location = viewModel.makeLocation() else { return }
+                            onSave(location)
+                            dismiss()
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .disabled(!viewModel.isInputValid)
+                        .accessibilityLabel(Constant.saveButtonTitle)
+                        .accessibilityHint(
+                            viewModel.isInputValid ? AccessibilityHint.saveEnabled.rawValue : AccessibilityHint.saveDisabled.rawValue
+                        )
                     }
-                    .accessibilityLabel(Constant.doneButtonTitle)
-                    .accessibilityHint(AccessibilityHint.doneButton.rawValue)
+
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button(Constant.doneButtonTitle) {
+                            focus = nil
+                        }
+                        .accessibilityLabel(Constant.doneButtonTitle)
+                        .accessibilityHint(AccessibilityHint.doneButton.rawValue)
+                    }
+                }
+                .onChange(of: focus) { oldValue, newValue in
+                    if let oldValue, newValue != oldValue {
+                        viewModel.markTouched(oldValue)
+                    }
+                    if newValue == nil, let oldValue {
+                        viewModel.markTouched(oldValue)
+                    }
                 }
             }
-            .onChange(of: focus) { oldValue, newValue in
-                if let oldValue, newValue != oldValue {
-                    viewModel.markTouched(oldValue)
-                }
-                if newValue == nil, let oldValue {
-                    viewModel.markTouched(oldValue)
-                }
-            }
+            .scrollDismissesKeyboard(.interactively)
         }
     }
 }
