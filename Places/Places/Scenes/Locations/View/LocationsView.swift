@@ -43,25 +43,31 @@ private extension LocationsView {
     var content: some View {
         switch viewModel.state {
         case .unknown, .loading:
-            // TODO: - Improve loading state view
-            ProgressView("Loading…")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            VStack(spacing: 12) {
+                ProgressView()
+                Text(Constant.loadingTitle)
+                    .font(.title2)
+                    .fontWeight(.semibold)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         case .empty:
-            // TODO: - Improve empty state view
-            Text("No locations found!")
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .accessibilityLabel(AccessibilityLabel.empty.rawValue)
-                .accessibilityHint(AccessibilityHint.empty.rawValue)
+            CenterStateView(
+                model: .init(
+                    title: Constant.emptyLabelTitle,
+                    accessibilityLabel: .empty,
+                    accessibilityHint: .empty
+                )
+            )
         case .success:
             locationsList
         case .error:
-            // TODO: - Improve error state
-            Text("Something went wrong")
-                .foregroundStyle(.secondary)
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .accessibilityLabel(AccessibilityLabel.error.rawValue)
-                .accessibilityHint(AccessibilityHint.addLocation.rawValue)
+            CenterStateView(
+                model: .init(
+                    title: Constant.errorLabelTitle,
+                    accessibilityLabel: .empty,
+                    accessibilityHint: .empty
+                )
+            )
         }
     }
 }
@@ -112,6 +118,9 @@ private extension LocationsView {
 private extension LocationsView {
     enum Constant {
         static let navigationTitle = "Locations"
+        static let loadingTitle = "Loading..."
+        static let emptyLabelTitle = "No locations found!"
+        static let errorLabelTitle = "Something went wrong 😕"
         static let locationsListVStackViewSpacing: CGFloat = 12
         static let addLocationsButtonTitle = "Add Location"
         static let addLocationsButtonHeight: CGFloat = 48
