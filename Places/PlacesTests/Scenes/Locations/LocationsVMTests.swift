@@ -16,12 +16,12 @@ final class LocationsVMTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = LocationsVM()
+        sut = .init()
     }
 
     override func tearDown() {
-        super.tearDown()
         sut = nil
+        super.tearDown()
     }
 
     func test_LocationListIsEmpty() async throws {
