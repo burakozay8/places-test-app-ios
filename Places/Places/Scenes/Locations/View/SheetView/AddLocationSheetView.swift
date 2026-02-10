@@ -27,7 +27,6 @@ struct AddLocationSheetView: View {
                             title: Constant.nameTextFieldPlaceHolderText,
                             text: $viewModel.name,
                             focus: $focus,
-                            accessibilityLabel: AccessibilityLabel.nameField.rawValue,
                             accessibilityHint: .nameField
                         )
                     )
@@ -42,7 +41,6 @@ struct AddLocationSheetView: View {
                             keyboard: .numbersAndPunctuation,
                             error: viewModel.shouldShowError(for: .latitude) ? viewModel.latitudeError : nil,
                             focusField: .latitude,
-                            accessibilityLabel: Constant.latitudeTextFieldPlaceHolderText,
                             accessibilityHint: .latitudeField,
                         )
                     )
@@ -58,7 +56,6 @@ struct AddLocationSheetView: View {
                             keyboard: .numbersAndPunctuation,
                             error: viewModel.shouldShowError(for: .longitude) ? viewModel.longitudeError : nil,
                             focusField: .longitude,
-                            accessibilityLabel: Constant.longitudeTextFieldPlaceHolderText,
                             accessibilityHint: .longitudeField,
                         )
                     )

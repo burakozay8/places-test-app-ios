@@ -25,7 +25,6 @@ struct ValidatableTextField: View {
                     RoundedRectangle(cornerRadius: 10, style: .circular)
                         .stroke(model.error == nil ? Color.gray : Color.red, lineWidth: 2)
                 )
-                .accessibilityLabel(model.accessibilityLabel)
                 .accessibilityHint(model.accessibilityHint?.rawValue ?? "")
 
             if let error = model.error {
@@ -49,7 +48,6 @@ extension ValidatableTextField {
         let keyboard: UIKeyboardType
         let error: String?
         let focusField: AddLocationSheetVM.AddLocationField
-        let accessibilityLabel: String
         let accessibilityHint: AccessibilityHint?
 
         init(
@@ -59,7 +57,6 @@ extension ValidatableTextField {
             keyboard: UIKeyboardType = .default,
             error: String? = nil,
             focusField: AddLocationSheetVM.AddLocationField = .name,
-            accessibilityLabel: String,
             accessibilityHint: AccessibilityHint? = nil
         ) {
             self.title = title
@@ -68,7 +65,6 @@ extension ValidatableTextField {
             self.keyboard = keyboard
             self.error = error
             self.focusField = focusField
-            self.accessibilityLabel = accessibilityLabel
             self.accessibilityHint = accessibilityHint
         }
     }

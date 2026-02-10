@@ -12,7 +12,4 @@ enum AccessibilityLabel: String {
     case empty = "No locations"
     case error = "Failed to load locations"
     case addLocation = "Add location"
-
-    // MARK: - AddLocationSheetView
-    case nameField = "Name"
 }
