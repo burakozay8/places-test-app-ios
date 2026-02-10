@@ -1,4 +1,4 @@
-# Places + Wikipedia Deep Link Assignment
+# Places + Wikipedia Deep Link
 
 This repository contains two parts:
 
@@ -10,7 +10,8 @@ The goal is:
 - Show a location based on **coordinates** sent by another app  
 - Provide a simple SwiftUI app that lists locations, allows adding a custom one, and opens Wikipedia via deep link  
 
-> The Wikipedia app changes are implemented in a forked repository, on the `places-deeplink` branch.
+> The Wikipedia app changes are implemented in a forked repository, on the `places-app-deeplink` branch.
+> Link: https://github.com/burakozay8/wikipedia-ios/tree/feature/places-app-deeplink
 
 ---
 
@@ -34,7 +35,7 @@ The goal is:
 - Each row has an action to open Wikipedia on that location  
 - User can add a custom location (name optional, latitude/longitude required)  
 - Added locations are stored locally so they persist after app restart  
-- Basic accessibility improvements (VoiceOver labels and hints)  
+- Accessibility improvements (VoiceOver labels and hints)  
 - Unit tests for `LocationsVM` using stub JSON and mock services  
 
 ### How it works
@@ -51,13 +52,13 @@ The goal is:
 - iOS simulator or a physical device
 
 ### Run Places app
-1. Open `Places.xcodeproj` (or workspace if you have one)
+1. Open `Places.xcodeproj`
 2. Select a simulator or device
 3. Run
 
 ### Run Wikipedia app (fork)
 1. Open the forked Wikipedia project
-2. Checkout the `places-deeplink` branch
+2. Checkout the `places-app-deeplink` branch
 3. Build and run on the same simulator/device
 
 ---
@@ -84,4 +85,3 @@ Run with:
 
 ## Notes
 - If `UIApplication.canOpenURL` returns `false` in the Places app, make sure the Wikipedia app is installed on the same simulator/device.
-- When testing on a real device, you may need to add the scheme to `LSApplicationQueriesSchemes` depending on the setup.
