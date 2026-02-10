@@ -8,12 +8,12 @@
 
 enum AccessibilityHint: String {
     // MARK: - LocationsRowView
-    case openWikipedia = "Opens Wikipedia app on the Places tab for these coordinates."
+    case openWikipedia = "Opens Wikipedia app on the Places tab for these coordinates. Double tap to explore."
 
     // MARK: - LocationsView
     case empty = "Use Add Location button to create a new one."
     case error = "Try again later."
-    case addLocation = "Opens a form to add a custom location."
+    case addLocation = "Opens a form to add a custom location. Double tap to open."
 
     // MARK: - AddLocationSheetView
     case nameField = "Optional. Enter a label for this location."
