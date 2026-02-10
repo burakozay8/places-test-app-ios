@@ -87,6 +87,18 @@ final class LocationsVMTests: XCTestCase {
         XCTAssertTrue(sut.locations.isEmpty)
     }
 
+    func test_WikipediaDeeplinkUrl() async throws {
+        let response = try createResponse("locations")
+        await fetchLocations(response: response)
+
+        let firstItem = try XCTUnwrap(sut.locations.first)
+
+        let url = sut.createWikipediaPlacesDeeplinkUrl(latitude: firstItem.latitude, longitude: firstItem.longitude)
+        let expectedUrl = URL(string: "wikipedia://places?lat=52.3547498&lon=4.8339215")!
+
+        XCTAssertEqual(url, expectedUrl)
+    }
+
 
     private func fetchLocations(response: LocationsResponse, stored: [Location] = []) async {
         let service = MockLocationsService(response: response)
