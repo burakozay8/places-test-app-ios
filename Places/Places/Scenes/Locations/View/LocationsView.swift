@@ -64,8 +64,8 @@ private extension LocationsView {
             CenterStateView(
                 model: .init(
                     title: Constant.errorLabelTitle,
-                    accessibilityLabel: .empty,
-                    accessibilityHint: .empty
+                    accessibilityLabel: .error,
+                    accessibilityHint: .error
                 )
             )
         }
